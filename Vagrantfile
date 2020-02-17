@@ -46,10 +46,10 @@ mount /dev/sdb1 /media/data
 
 # Install kubeadm, kubectl and kubelet
 export DEBIAN_FRONTEND=noninteractive
-apt-get -qq install ebtables ethtool
-sudo add-apt-repository ppa:ondrej/php
+add-apt-repository ppa:ondrej/php
 apt-get -qq update
 apt-get -qq upgrade
+apt-get -qq install ebtables ethtool
 apt-get -qq install -y net-tools docker.io vim openssh-server samba curl wget php7.3-cli php7.3-zip unzip php7.3-mbstring php7.3-curl php7.3-dom php7.3-gd
 
 #Install composer
@@ -58,9 +58,9 @@ php -r "if (hash_file('sha384', 'composer-setup.php') === 'e0012edf3e80b6978849f
 php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 php -r "unlink('composer-setup.php');"
 
+#Install docker-compose
 curl -L "https://github.com/docker/compose/releases/download/1.25.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
-
 
 ##Add samba configuration
 cat <<EOT >> /etc/samba/smb.conf
@@ -119,7 +119,7 @@ ln -s /media/data/tmp /tmp
 cat <<EOT >> /etc/issue
   Welcome to environment to work with Docker. Access to the machine through IP 192.168.56.10 using:
      SSH   --> ssh vagrant@192.168.56.10
-     SAMBA --> \\\\192.168.56.10\\docker_projects (as vagrant user)
+     SAMBA --> \\\\\\192.168.56.10\\\\docker_projects (as vagrant user)
 EOT
 
 SCRIPT
