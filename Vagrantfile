@@ -91,6 +91,8 @@ cat <<EOT > /etc/default/locale
   LANG="es_ES.UTF-8"
 EOT
 
+echo -ne "vagrant\vagrant\n" | smbpasswd -a -s vagrant
+
 ##Enable docker on-startup
 systemctl enable docker
 
